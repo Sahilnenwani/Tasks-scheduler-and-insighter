@@ -1,0 +1,104 @@
+@import "../../ScssVariables/variables.scss";
+
+
+
+.total-size{
+    height: 100vh;
+    
+}
+
+.main-div{
+    width: 100%;
+    height: 100%;
+}
+.login-page-items{
+    display: flex;
+    flex-direction: $column-direction-flex;
+    align-items: $align-flex-items;
+    justify-content: center;
+ 
+}
+.Sign-in-text{
+    margin: -10px 0 20px 0;
+    font-weight: 500;
+    color:#3333FF;
+    font-size: 40px;
+}
+
+.login-text{
+    color:#C0C0C0;
+    margin-bottom: 5px;
+}
+.login-page-items .Icons-style{
+    display: $flex-display;
+    flex-direction: $row-direction-flex;
+    justify-content: center;
+    align-items: $align-flex-items;
+} 
+
+.icon-style-svg{
+    height: 45px;
+    width: 45px;
+    border: 1px solid;
+    border-radius: 100px;
+    margin: 0 10px 0 10px;
+    display: $flex-display;
+    align-items: $align-flex-items;
+    justify-content: center;
+}
+.icon-style-svg svg{
+    width: 25px;
+    height: 25px; 
+}
+// .login-page-items .Icons-style div{
+//     margin-left: 10px;
+//     margin-left: 10px;
+// }
+
+
+.login-page-items .form-layout{
+    display: $flex-display;
+    flex-direction: $column-direction-flex;
+    align-items: $align-flex-items;
+}
+
+.login-page-items .form-layout .form-input-field{
+    width: 350px;
+   
+    
+}
+.login-page-items .form-layout .form-input-field input{
+    border-radius: 20px;
+}
+
+
+.form-layout button{
+    background-color: #3333FF;
+}
+.style-button{
+    width: 120px;
+    
+    border-radius: 20px;
+}
+
+.side-singup{
+    background-color: #6666FF;
+    display: $flex-display;
+    flex-direction: $column-direction-flex;
+    justify-content: center;
+   color: azure;
+    align-items: $align-flex-items;
+   
+}
+.signup-side-text{
+    text-align: center;
+    margin: 0 20px 10px 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .disply-of-side-data-settng{
+        display: none;
+    }
+
+  }
+  
