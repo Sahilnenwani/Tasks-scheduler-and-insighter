@@ -8,18 +8,30 @@ import PasswordSVG from '../../components/SVGs/PasswordSVG';
 import { Link,useHistory } from 'react-router-dom';
 import { logInWithEmailAndPassword,auth } from '../../fire';
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useForm } from 'react-hook-form';
 import "./Login.scss";
 
 
 function LoginPage() {
-  const [email,setEmail]=useState();
-  const [password, setPassword] = useState();
+  // const [email,setEmail]=useState();
+  // const [password, setPassword] = useState();
   const [user, loading, error] = useAuthState(auth);
-  const history=useHistory();  
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    criteriaMode: "all"
+  });
+
+  const history=useHistory();
+  const onSubmit = data => {
+    loginUser(data)
+  }
+    
+
+  const loginUser=(data)=>{
+    logInWithEmailAndPassword(data.email,data.password)
+  }
 
   useEffect(() => {
     if(loading){
-      console.log("loader will be there of login page")
       return;
     }
      if(user) history.replace("/home")
@@ -27,6 +39,7 @@ function LoginPage() {
   
   return (
     <>
+      {loading ? <simpleLoader></simpleLoader> : 
       <div className="total-size">
         <Row >
           <Col lg={4} sm={4} xs={12} className="disply-of-side-data-settng">
@@ -47,17 +60,19 @@ function LoginPage() {
               </div>
               <div className='login-text'>Login</div>
               <div className='center'>
-                <Form className='form-layout'>
+                <Form className='form-layout' onSubmit={handleSubmit(onSubmit)}>
                   <Form.Group className="mb-3 form-input-field" controlId="formBasicEmail">
                     <EmailSVG/>
-                    <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e)=>setEmail(e.target.value)} />
-                  </Form.Group>
+                    <Form.Control type="email" placeholder="Enter email"   {...register("email", { required: "Email is required", minLength: { value: 8, message: "email minimum length is 8" }, maxLength: 20 })} />
+                    <span className={errors.email? "error-messages" : " "}>{errors.email?.message}</span>                 
+                     </Form.Group>
 
                   <Form.Group className="mb-3 form-input-field" controlId="formBasicPassword">
                    {/* <PasswordSVG/> */}
-                    <Form.Control type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
+                   <Form.Control type="password" placeholder="password"  {...register("password", { required: "password is required", minLength: { value: 8, message: "password minimum length is 8" } })} />
+                    <span className={errors.password?"error-messages":" "}>{errors.password?.message}</span>
                   </Form.Group>
-                  <Button variant="primary" type="button" className='style-button' onClick={()=> logInWithEmailAndPassword(email,password)}>
+                  <Button variant="primary" type="submit" className='style-button' >
                     <span className='text-style'>Login</span>
                   </Button>
                 </Form>
@@ -66,7 +81,7 @@ function LoginPage() {
           </Col>
         </Row>
       </div>
-
+        }
     </>
 
 
