@@ -8,6 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { registerWithEmailAndPassword, auth } from '../../fire';
 import simpleLoader from '../../components/Loader/simpleLoader';
 import { useForm } from 'react-hook-form';
+import LogSignButton from '../../components/Buttons/LogSignButton';
 
 
 
@@ -72,9 +73,8 @@ const SignUppage = () => {
                     <Form.Control type="password" placeholder="password"   {...register("password", { required: "password is required", minLength: { value: 8, message: "password minimum length is 8" } })} />
                     <span className={errors.password?"error-messages":" "}  >{errors.password?.message}</span>
                   </Form.Group>
-                  <Button variant="primary" type="submit" className='style-button'>
-                    <span className='text-style'>Sign up</span>
-                  </Button>
+                  <LogSignButton text="Sign up"/>
+                 
                 </Form>
               </div>
             </div>

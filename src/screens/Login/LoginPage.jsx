@@ -9,6 +9,7 @@ import { Link,useHistory } from 'react-router-dom';
 import { logInWithEmailAndPassword,auth } from '../../fire';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from 'react-hook-form';
+import LogSignButton from '../../components/Buttons/LogSignButton';
 import "./Login.scss";
 
 
@@ -39,7 +40,7 @@ function LoginPage() {
   
   return (
     <>
-      {loading ? <simpleLoader></simpleLoader> : 
+      {user ? <simpleLoader></simpleLoader> : 
       <div className="total-size">
         <Row >
           <Col lg={4} sm={4} xs={12} className="disply-of-side-data-settng">
@@ -62,7 +63,7 @@ function LoginPage() {
               <div className='center'>
                 <Form className='form-layout' onSubmit={handleSubmit(onSubmit)}>
                   <Form.Group className="mb-3 form-input-field" controlId="formBasicEmail">
-                    <EmailSVG/>
+                   
                     <Form.Control type="email" placeholder="Enter email"   {...register("email", { required: "Email is required", minLength: { value: 8, message: "email minimum length is 8" }, maxLength: 20 })} />
                     <span className={errors.email? "error-messages" : " "}>{errors.email?.message}</span>                 
                      </Form.Group>
@@ -72,9 +73,10 @@ function LoginPage() {
                    <Form.Control type="password" placeholder="password"  {...register("password", { required: "password is required", minLength: { value: 8, message: "password minimum length is 8" } })} />
                     <span className={errors.password?"error-messages":" "}>{errors.password?.message}</span>
                   </Form.Group>
-                  <Button variant="primary" type="submit" className='style-button' >
+                   <LogSignButton text="login"/>
+                  {/* <Button variant="primary" type="submit" className='style-button' >
                     <span className='text-style'>Login</span>
-                  </Button>
+                  </Button> */}
                 </Form>
               </div>
             </div>

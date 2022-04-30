@@ -1,0 +1,22 @@
+// .tabs-overall-design{
+//     border: 0px !important;
+// }
+.tabs-design{
+    margin-top: 15px;
+    margin-left: 60px;
+}
+
+.tabs-design .nav-tabs{
+    border-bottom: 0px ;
+}
+.tabs-design .nav-tabs .nav-item button{
+    border: 0px;
+    color:lightsteelblue;
+}
+
+.nav-tabs .nav-item button.active{
+    background-color: #62a7c8;
+    border: 1px;
+    border-radius: 100px;
+    color:azure
+}

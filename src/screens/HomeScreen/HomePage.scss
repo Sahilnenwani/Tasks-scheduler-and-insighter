@@ -1,0 +1,25 @@
+
+.Size-total{
+    height: 100vh;
+}
+.row>*{
+ 
+    padding-right:0px;
+    padding-left:0px;
+}
+.garph-tasks{
+    display: flex;
+    flex-direction: row;
+ 
+}
+.Dashboard-elements{
+    display: flex;
+    flex-direction: column;
+
+}
+.Nav-items{
+    margin-left: 0px;
+}
+.sideBar-style{
+    max-width: 100px;
+}
