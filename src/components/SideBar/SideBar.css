@@ -48,3 +48,6 @@
     box-shadow: 0 4px 6px -2px #1e81b0;
     text-align: center;
 }
+.Link-dec svg path{
+    fill: white;
+}

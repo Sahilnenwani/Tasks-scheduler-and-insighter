@@ -5,6 +5,8 @@ import { SideBar } from '../../components/SideBar/SideBar';
 import "./HomePage.scss"
 import { TabsDownNav } from '../../components/TabComp/TabsDownNav';
 import { DayChart } from '../../components/GraphCharts/DayChart';
+import ToDoCode from '../ToDo/ToDoApp';
+
 
 export const HomePage = () => {
 
@@ -20,10 +22,10 @@ export const HomePage = () => {
               <TabsDownNav />
             </Row>
             <Row className='todos-style' > 
-              <Col lg={6}> 
-              
+              <Col lg={6} className="ToDocode"> 
+            <ToDoCode />
               </Col>
-              <Col lg={6}>
+              <Col lg={5}>
               <DayChart/>
               </Col>
             </Row>
