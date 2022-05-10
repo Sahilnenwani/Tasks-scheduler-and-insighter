@@ -12,12 +12,12 @@ import simpleLoader from '../Loader/simpleLoader';
 
 export const NavBar = () => {
   const [user, loading, error] = useAuthState(auth);
-  const WDATA = useSelector(state => state.weatherdata);
+  const WDATA = useSelector(state => state.weatherReducer.weatherdata);
   const dispatch=useDispatch();
   console.log("Navbar",WDATA);
   useEffect(() => {
     dispatch(fetchDataCreater());
-}, [dispatch])
+    }, [dispatch])
   const history = useHistory();
 
   useEffect(() => {

@@ -22,8 +22,10 @@ export const HomePage = () => {
               <TabsDownNav />
             </Row>
             <Row className='todos-style' > 
-              <Col lg={6} className="ToDocode"> 
-            <ToDoCode />
+              <Col lg={6} > 
+              <div className="ToDocode">
+              <ToDoCode />
+              </div>
               </Col>
               <Col lg={5}>
               <DayChart/>

@@ -7,9 +7,10 @@ import App from './App';
 import { createStore,applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import weatherReducer from './Redux/Reducers/WeatherReducer';
+// import weatherReducer from './Redux/Reducers/WeatherReducer';
+import allReducer from './Redux/Reducers';
 
-const store =createStore(weatherReducer,applyMiddleware(thunk))
+const store =createStore(allReducer,applyMiddleware(thunk))
 
 ReactDOM.render(
 

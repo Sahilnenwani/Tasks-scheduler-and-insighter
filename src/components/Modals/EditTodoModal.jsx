@@ -1,25 +1,27 @@
 import React,{useState} from 'react';
 import { Modal,Button,Form } from 'react-bootstrap';
 
-export const EditTodoModal = () => {
+export const EditTodoModal = ({setCheck}) => {
     const [show, setShow] = useState(true);
-    const handleClose = () => setShow(false);
-    // const handleShow = () => setShow(true);
+    const handleClose = () => {
+      setShow(false);
+      setCheck(false);
+      
+    };
+  
 
     return (
     <div>
-        {/* <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button> */}
+     
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Edit To Do</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Edit Todo</Form.Label>
+              <Form.Label>Todo</Form.Label>
               <Form.Control
                 type="text"
                 // placeholder="name@example.com"

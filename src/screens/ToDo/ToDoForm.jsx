@@ -1,7 +1,21 @@
-import React,{useState} from 'react';
- 
+import React,{useState,useEffect} from 'react';
+import { useDispatch } from "react-redux"; 
+import { TodoDataCreater } from '../../Redux/Acrtions/TodoDataAction';
+import { useSelector } from 'react-redux';
+
 const ToDoForm = ({addTodoHandler}) => {
-    const[task,SetTask]=useState();
+  const todoList=useSelector(state=> state.TodoSReducer);  
+  const[task,SetTask]=useState();   
+    const dispatch =useDispatch();
+    console.log(todoList);
+    // useEffect(() => {
+    //     dispatch(TodoDataCreater(task))
+    // }, [task])
+    
+    // const addTodoHandler=(todo)=>{
+    //   let today = new Date().toLocaleDateString()
+    //   setToDoData([...toDoData,{id:toDoData.length+1,task:todo,time:today}]);
+    // }
     
     const add=(e)=>{
         e.preventDefault();
@@ -10,7 +24,13 @@ const ToDoForm = ({addTodoHandler}) => {
             return
         }
         console.log("task",task);
-        addTodoHandler(task)
+        let today = new Date().toLocaleDateString()
+        const data={
+          id:todoList.length+1,
+          task:task,
+          time:today
+        }
+        dispatch(TodoDataCreater(data))
         SetTask(" ");
     }
 
