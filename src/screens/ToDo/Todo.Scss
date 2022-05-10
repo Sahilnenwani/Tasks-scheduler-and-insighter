@@ -13,6 +13,7 @@
     background-color: transparent;
     border-color: transparent;
     color:grey;
+    border-color: grey;
     border-right: 1px solid;
     border-top: 1px solid;
     border-bottom: 1px solid;
@@ -28,6 +29,7 @@
    
     width: 500px;
     height:300px;
+    border-color: grey;
     border-right: 1px solid;
     border-top: 1px solid;
     border-bottom: 1px solid;
@@ -40,17 +42,18 @@
     margin-top: 10px;
 }
 
-.display-todos .todos-input button:active{
-    border: 0px !important;
-    border-color: transparent;
-    
-}
+
 .display-todos .todos-input button{
     background-color: transparent !important;
     border:0px !important;
-    color: grey !important;
+    color: grey;
 }
-
+.display-todos .todos-input button:active{
+    border: 0px !important;
+    border-color: transparent;
+    color: purple;
+    
+}
 .display-todos .todos-input .week-button div{
    border: 0px;
 }
@@ -70,4 +73,21 @@
 }
 .card-data{
     margin-top: 10px;
+    margin-left: 20px;
+}
+
+//todo Single
+.task-time-style{
+    display: flex;
+    flex-direction: column;
+}
+.card-data-todo{
+    display: flex;
+    justify-content: space-between;
+}
+.day-dis{
+    margin-left: 10px;
+}
+.collapes-week button:active{
+    color: purple;
 }

@@ -3,12 +3,16 @@ const initialState=[ ]
 
 const ToDoReducer=(state=initialState,action)=>{
     switch (action.type) {
-        case "Get TODO's":
+        case "Add TODO's":
             return(
             [
                 ...state,
                 {...action.payload}
             ])
+        case "Get TODO's":
+            return(
+                    action.payload
+                )
         case "Delete TODO":
             return(
             [

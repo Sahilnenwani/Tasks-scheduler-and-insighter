@@ -3,8 +3,8 @@ import {  Form, Button, Row, Col } from "react-bootstrap";
 import LinkedinSVG from '../../components/SVGs/LinkedinSVG';
 import FacebookSVG from '../../components/SVGs/FacebookSVG';
 import GoogleSVG from '../../components/SVGs/GoogleSVG';
-import EmailSVG from '../../components/SVGs/EmailSVG';
-import PasswordSVG from '../../components/SVGs/PasswordSVG';
+// import EmailSVG from '../../components/SVGs/EmailSVG';
+// import PasswordSVG from '../../components/SVGs/PasswordSVG';
 import { Link,useHistory } from 'react-router-dom';
 import { logInWithEmailAndPassword,auth } from '../../fire';
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -25,8 +25,8 @@ function LoginPage() {
   const onSubmit = data => {
     loginUser(data)
   }
-    
 
+console.log(auth);
   const loginUser=(data)=>{
     logInWithEmailAndPassword(data.email,data.password)
   }

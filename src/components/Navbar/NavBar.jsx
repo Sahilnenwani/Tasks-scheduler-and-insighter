@@ -46,7 +46,7 @@ export const NavBar = () => {
             <div className='margin-div'>
             <div className='Weather-data'>
             <div className='icon-weather'><img src={WDATA.current.condition.icon} /></div>
-            <div>{WDATA.current.temp_c}</div>
+            <div>{parseInt(WDATA.current.temp_c)}</div>
             <div>°C</div>
             </div>
             </div>

@@ -15,6 +15,7 @@ import {
       addDoc,
 } from "firebase/firestore";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyBOFxU256k40Ho_ZRHmsTd20B1mUNVPSg8",
   authDomain: "todoslist-364db.firebaseapp.com",
@@ -40,7 +41,7 @@ const registerWithEmailAndPassword = async(name, email, password) => {
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
         const user = res.user;
-        console.log("user",user)
+       
         await addDoc(collection(db, "users"), {
           uid: user.uid,
           name,

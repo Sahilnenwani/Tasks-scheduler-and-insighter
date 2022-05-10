@@ -1,7 +1,6 @@
-import React,{useState,useEffect} from 'react';
-import { useDispatch } from "react-redux"; 
+import React,{useState} from 'react';
+import { useDispatch,useSelector } from "react-redux"; 
 import { TodoDataCreater } from '../../Redux/Acrtions/TodoDataAction';
-import { useSelector } from 'react-redux';
 
 const ToDoForm = ({addTodoHandler}) => {
   const todoList=useSelector(state=> state.TodoSReducer);  

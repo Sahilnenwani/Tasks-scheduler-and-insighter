@@ -28,7 +28,7 @@ export const HomePage = () => {
               </div>
               </Col>
               <Col lg={5}>
-              <DayChart/>
+              <DayChart className="day-chart-style"/>
               </Col>
             </Row>
           
