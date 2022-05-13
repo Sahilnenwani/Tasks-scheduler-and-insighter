@@ -57,7 +57,16 @@
 //     margin-left: 10px;
 // }
 
+.text-style{
+    width: 80px;
+    border-radius: 20px;
+    border-color: transparent;
+    height: 30px;
+    margin-top: 5px;
+    margin-right: 20px;
+    
 
+}
 .login-page-items .form-layout{
     display: $flex-display;
     flex-direction: $column-direction-flex;
@@ -109,4 +118,13 @@
       margin-top: 0;
       margin-bottom: 0;
       margin-left: 15px;
+  }
+  .loader-style{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  }
+  .btn-outline-light:hover{
+      color: black !important;
   }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { NavBar } from '../../components/Navbar/NavBar';
 import { Container, Row, Col } from "react-bootstrap";
 import { SideBar } from '../../components/SideBar/SideBar';
@@ -9,11 +9,13 @@ import ToDoCode from '../ToDo/ToDoApp';
 
 
 export const HomePage = () => {
+// const [checkLoader, setCheckLoader] = useState(false)
+
 
   return (
-    <div>
-      <Row lg={12} className="Size-total">
-        <Col xs={1} className="sideBar-style" >
+    <div className="home-page-size">
+      <Row lg={14} className="Size-total">
+        <Col lg={2} className="sideBar-style" >
           <SideBar></SideBar>
         </Col>
         <Col lg={11}  >

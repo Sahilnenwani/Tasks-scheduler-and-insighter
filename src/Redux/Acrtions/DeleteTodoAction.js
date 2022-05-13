@@ -1,7 +1,7 @@
 export const TodoDeleteAction=(data)=>{
     return(
         {
-            type:"Delete TODO",
+            type:"Get TODO's",
             payload:data
         }
     )

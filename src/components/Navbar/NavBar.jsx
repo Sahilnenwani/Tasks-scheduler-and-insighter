@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'
 import { logout, auth } from "../../fire"
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Navbar, Container, NavDropdown, Nav } from 'react-bootstrap'
 import "./Navbar.scss";
 import { SearchIcon } from '../SVGs/SearchIcon';
 import EmailSVG from '../SVGs/EmailSVG';
 import { useSelector, useDispatch } from "react-redux";
 import { fetchDataCreater } from '../../Redux/Acrtions/WeatherAction';
-import simpleLoader from '../Loader/simpleLoader';
+// import SimpleLoader from '../Loader/simpleLoader';
 
 export const NavBar = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -18,10 +18,10 @@ export const NavBar = () => {
   useEffect(() => {
     dispatch(fetchDataCreater());
     }, [dispatch])
-  const history = useHistory();
+  const history = useNavigate();
 
   useEffect(() => {
-    if (!user) history.replace("/");
+    if (!user) history("/")
   }, [user])
 
   const logOutUser = () => {
@@ -36,10 +36,10 @@ export const NavBar = () => {
         <Navbar.Collapse id="responsive-navbar-nav" className='margin-div'>
           <Nav className="me-auto">
             <div className="icon-style">
-              <Nav.Link href="#pricing"><EmailSVG /></Nav.Link>
+              <Nav.Link to="#pricing"><EmailSVG /></Nav.Link>
             </div>
             <div className="icon-style">
-              <Nav.Link href="#features"><SearchIcon /></Nav.Link>
+              <Nav.Link to="#features"><SearchIcon /></Nav.Link>
             </div>
           </Nav>
           <Nav className="button-style">
@@ -50,12 +50,12 @@ export const NavBar = () => {
             <div>°C</div>
             </div>
             </div>
-            <button className='text-style' type="button" onClick={logOutUser}>Logout</button>
+            <button className='text-style-nav' type="button" onClick={logOutUser}>Logout</button>
           </Nav>
         </Navbar.Collapse>
 
       </Navbar>
-       :<simpleLoader/> }
+       :" " }
     </div>
   )
 }

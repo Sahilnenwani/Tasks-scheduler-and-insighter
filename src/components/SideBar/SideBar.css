@@ -30,7 +30,7 @@
     flex-direction: column;
     align-items: center;
     height: 100vh;
-    background-color: #62a7c8;
+    background-color: rgb(116, 136, 248);
 }
 .Total-size{
     height: 100vh;
@@ -45,7 +45,7 @@
 .uper-box-design{
    margin-top: 15px;
     width: 100%;
-    box-shadow: 0 4px 6px -2px #1e81b0;
+    box-shadow: 0 5px 5px rgb(116, 136, 248);;
     text-align: center;
 }
 .Link-dec svg path{

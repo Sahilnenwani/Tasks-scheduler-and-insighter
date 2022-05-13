@@ -6,15 +6,14 @@ import { useSelector } from 'react-redux';
 import { TodoDeleteCreater } from '../../Redux/Acrtions/DeleteTodoAction';
 import { TodoGetDataCreater } from '../../Redux/Acrtions/GetTodoAction';
 
-const ToDosList = ({setCheck}) => {
-    useEffect(() => {  
-        console.log("dispatch inital");
-        dispatch(TodoGetDataCreater());
-      }, [])
-
-    const todoList=useSelector(state=> state.TodoSReducer);
-    console.log(todoList)
-    const dispatch=useDispatch();
+const ToDosList = ({setCheck,FilterTodoList}) => {
+  // const [FilterTodoList, setFilterTodoList] = useState([])
+  
+  const todoList=useSelector(state=> state.TodoSReducer)
+  const dispatch=useDispatch();
+  console.log("filtered data",FilterTodoList)
+ 
+   
    
     const RemoveTodo=(id)=>{
         let newTodosList=todoList.filter(todo=>{
@@ -25,7 +24,7 @@ const ToDosList = ({setCheck}) => {
     }
     return (
     <div>
-        {todoList?.map((todo)=>{
+        {FilterTodoList?.map((todo)=>{
             return(
                 <ToDoSingle removeThisTodo={RemoveTodo} todo={todo} setCheck={setCheck}/>
             )

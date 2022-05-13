@@ -41,7 +41,7 @@ export const TodoGetDataCreater=()=>{
     //            inprogress:doc.data().inprogress
     //        })))
     //    })
-
-             dispatch(TodoGetDataAction(todosData))   
+                  console.log("To data creator ",todosData)
+     dispatch(TodoGetDataAction(todosData))
     }
 }

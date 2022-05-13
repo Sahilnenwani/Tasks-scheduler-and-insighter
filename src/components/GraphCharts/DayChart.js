@@ -1,8 +1,16 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import ReactECharts from 'echarts-for-react';
+import { useSelector,useDispatch } from 'react-redux/es/exports';
 
 export const DayChart = () => {
-    let option = {
+  // const [daysData, setDaysData] = useState([]);
+  // const [daysTime, setDaysTime] = useState({}); 
+  const filterlength = useSelector(state => state.FilteredDataReducer.filterdtodos);
+  console.clear();
+  console.log("Filtered length in chart component ///",filterlength)
+
+
+  let option = {
         xAxis: {
           type: 'category',
           boundaryGap: false,
@@ -13,7 +21,7 @@ export const DayChart = () => {
         },
         series: [
           {
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            data: [parseInt(filterlength?.Monday),parseInt(filterlength?.Tuesday),parseInt(filterlength?.Wednesday),parseInt(filterlength?.Thursday),parseInt(filterlength?.Friday),parseInt(filterlength?.Saturday),parseInt(filterlength?.Sunday) ],
             type: 'line',
             areaStyle: {}
           }

@@ -1,6 +1,6 @@
 import React from 'react';
 import "./simpleLoader.css";
-const simpleLoader = () => {
+const SimpleLoader = () => {
     return (
         <div class="loader loader--style3" title="2">
             <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -20,4 +20,4 @@ const simpleLoader = () => {
 }
 
 
-export default simpleLoader;
+export default SimpleLoader;

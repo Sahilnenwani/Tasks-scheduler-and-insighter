@@ -1,4 +1,5 @@
 import React from 'react';
+import { createRoot } from "react-dom/client";
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.js';
@@ -10,16 +11,18 @@ import { Provider } from 'react-redux';
 // import weatherReducer from './Redux/Reducers/WeatherReducer';
 import allReducer from './Redux/Reducers';
 
-const store =createStore(allReducer,applyMiddleware(thunk))
+const store = createStore(allReducer,applyMiddleware(thunk));
 
-ReactDOM.render(
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+root.render(
 
   <React.StrictMode>
   <Provider store={store}>
     <App />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

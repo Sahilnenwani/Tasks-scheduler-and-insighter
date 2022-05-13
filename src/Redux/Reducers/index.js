@@ -1,10 +1,13 @@
 import { combineReducers } from "redux";
-import TodoSReducer from "./Todo'sReducer";
+import TodoReducer from "./TodosReducer";
 import weatherReducer from "./WeatherReducer";
+import FilteredDataReducer from "./FilteredDataReducer";
 
 const allReducer=combineReducers({
-    TodoSReducer,   
-    weatherReducer
+    TodoReducer,   
+    weatherReducer,
+    FilteredDataReducer
+    
 })
 
 export default allReducer;

@@ -1,6 +1,6 @@
 import React from 'react';
 import "./SideBar.css"
-import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom';
 import {AiOutlineUnorderedList,AiOutlineFolder,AiOutlineThunderbolt} from "react-icons/ai";
 import {IoIosAttach} from "react-icons/io";
 import {GoGraph} from "react-icons/go";
@@ -11,13 +11,13 @@ export const SideBar = () => {
   return (
     <div className='Total-size'>
       <div className='Flex-div'>
-        <div className="uper-box-design"><Link className="Link-dec"><AiOutlineUnorderedList/></Link></div>
-      <Link className="Link-dec"><AiOutlineThunderbolt/></Link>
-      <Link className="Link-dec"><AiOutlineFolder/></Link>
-      <Link className="Link-dec"><GoGraph/></Link>
-      <Link className="Link-dec"><BsImage/></Link>
-      <Link className="Link-dec">Tasks</Link>
-      <Link className="Link-dec"><IoIosAttach/></Link>
+        <div className="uper-box-design"><Link to="/" className="Link-dec"><AiOutlineUnorderedList/></Link></div>
+      <Link to="/" className="Link-dec"><AiOutlineThunderbolt/></Link>
+      <Link to="/" className="Link-dec"><AiOutlineFolder/></Link>
+      <Link to="/" className="Link-dec"><GoGraph/></Link>
+      <Link to="/" className="Link-dec"><BsImage/></Link>
+      <Link to="/" className="Link-dec">Tasks</Link>
+      <Link to="/" className="Link-dec"><IoIosAttach/></Link>
       </div>
          {/* <Nav className="flex-sidebar"
             activeKey="/home"

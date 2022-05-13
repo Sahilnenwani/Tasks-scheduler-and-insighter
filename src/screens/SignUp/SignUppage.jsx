@@ -3,10 +3,10 @@ import { Form, Button, Row, Col } from "react-bootstrap";
 import LinkedinSVG from '../../components/SVGs/LinkedinSVG';
 import FacebookSVG from '../../components/SVGs/FacebookSVG';
 import GoogleSVG from '../../components/SVGs/GoogleSVG';
-import { Link, useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { registerWithEmailAndPassword, auth } from '../../fire';
-import simpleLoader from '../../components/Loader/simpleLoader';
+import SimpleLoader from '../../components/Loader/simpleLoader';
 import { useForm } from 'react-hook-form';
 import LogSignButton from '../../components/Buttons/LogSignButton';
 
@@ -16,16 +16,20 @@ import LogSignButton from '../../components/Buttons/LogSignButton';
 const SignUppage = () => {
   // const [name, setName] = useState();
   // const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  // const [password, setPassword] = useState();
+  const [checkLoading, setCheckLoading] = useState(false)
+
   const [user, loading, error] = useAuthState(auth);
   const { register, handleSubmit, formState: { errors } } = useForm({
     criteriaMode: "all"
   });
-  const onSubmit = data => {
-    registeruser(data)
+  const onSubmit =async(data) => {
+    setCheckLoading(true);
+    await registeruser(data);
+    setCheckLoading(false);
   }
 
-  const history = useHistory();
+  const history = useNavigate();
 
 
   const registeruser = (data) => {
@@ -40,12 +44,16 @@ const SignUppage = () => {
     //   <simpleLoader></simpleLoader>
     //   return;
     // }
-    if (user) history.replace("/home")
+    if (user) history("/home")
   }, [user, loading])
 
 
   return (
-    <>
+    <>{ 
+      checkLoading? <div className="loader-style">
+      <SimpleLoader />
+      </div>
+      :
       <div className="total-size">
         <Row >
           <Col lg={8} xs={12} >
@@ -86,11 +94,13 @@ const SignUppage = () => {
               </div>
               <div>
                 <p className='signup-side-text'>To connect keep connected with us please login with your personal info</p> </div>
-              <Link to="/"><Button variant="outline-light" type="submit" className='style-button'><span className='text-style' >Login</span></Button></Link>
+              <Link to="/" ><Button variant="outline-light" type="submit" className='style-button'><span className='text-style' >Login</span></Button></Link>
             </div>
           </Col>
         </Row>
       </div>
+    }
+      
 
     </>
 

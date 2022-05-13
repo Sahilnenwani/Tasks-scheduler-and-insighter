@@ -12,10 +12,13 @@
 .tabs-design .nav-tabs .nav-item button{
     border: 0px;
     color:lightsteelblue;
+    border: 1px;
+    border-radius: 100px !important;
+    
 }
 
 .nav-tabs .nav-item button.active{
-    background-color: #62a7c8;
+    background-color: rgb(113, 129, 216);
     border: 1px;
     border-radius: 100px;
     color:azure

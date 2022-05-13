@@ -2,11 +2,11 @@ import React,{useState} from 'react';
 import { Modal,Button,Form } from 'react-bootstrap';
 import { useDispatch,useSelector } from "react-redux"; 
 import { TodoDataCreater } from '../../Redux/Acrtions/TodoDataAction';
-import { Firestore } from 'firebase/firestore';
+import { TodoGetDataCreater } from '../../Redux/Acrtions/GetTodoAction';
 
 
 
-export const AddTodoModal = ({setCheckAddButton}) => {
+export const AddTodoModal = ({setCheckAddButton}) => {  
     const [show, setShow] = useState(true);
     const[task,SetTask]=useState();   
     const handleClose = () => {
@@ -14,12 +14,12 @@ export const AddTodoModal = ({setCheckAddButton}) => {
         setShow(false);
     };
 
-    const todoList=useSelector(state=> state.TodoSReducer); 
+    const todoList = useSelector(state => state.TodoReducer.todos); 
       const dispatch =useDispatch();
-      console.log(todoList);
+      // console.log("add modal values of todoList",todoList);
 
       const add=()=>{
-        console.log("add button")
+        // console.log("add button")
         if (task==="") {
             alert("All the feilds are mandatory")
             return;
@@ -31,7 +31,8 @@ export const AddTodoModal = ({setCheckAddButton}) => {
           todo:task,
           time:today
         }
-        dispatch(TodoDataCreater(data))
+        dispatch(TodoDataCreater(data));
+        dispatch(TodoGetDataCreater());
         SetTask(" ");
     }
 
@@ -50,6 +51,7 @@ export const AddTodoModal = ({setCheckAddButton}) => {
                 type="Enter task..."
                 autoFocus
                 onChange={(e)=>SetTask(e.target.value)}
+                maxlength="20"
               />
             </Form.Group>
           </Form>

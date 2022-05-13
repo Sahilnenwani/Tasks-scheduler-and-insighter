@@ -12,7 +12,7 @@ import {
 export const TodoDataAction=(data)=>{
     return(
         {
-            type:"Add TODO's",
+            type:"Get TODO's",
             payload:data
         }
     )
@@ -20,7 +20,7 @@ export const TodoDataAction=(data)=>{
 
 export const TodoDataCreater=(data)=>{
     return async (dispatch)=>{
-        console.log("working Todo Reducer");
+        console.log("working Todo add data  Reducer");
         await addDoc(collection(db, "todos"), {
             inprogress:true,
             time:data.time,

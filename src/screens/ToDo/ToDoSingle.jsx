@@ -11,6 +11,7 @@ import "./Todo.scss";
 
 
 const ToDoSingle = ({ todo, setCheck }) => {
+  // const [check,setCheck]=useState(false);
   const todoList = useSelector(state => state.TodoSReducer);
   const dispatch = useDispatch();
   
@@ -22,13 +23,15 @@ const ToDoSingle = ({ todo, setCheck }) => {
     console.log("Remove todo function")
     dispatch(TodoDeleteCreater(newTodosList));
   }
-
+  
 
 
 
   return (
     <div key={todo.id} >
-      <Card body style={{width:"350px", height:"70px", marginBottom:"8px"}}>
+      
+      
+      <Card body style={{width:"300px", height:"70px", marginBottom:"8px"}}>
         <div className='card-data-todo'>
         <div className='task-time-style'>
           <div>{todo.todo}</div>

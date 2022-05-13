@@ -8,7 +8,6 @@ export const EditTodoModal = ({setCheck}) => {
       setCheck(false);
     };
   
-
     return (
     <div>
      

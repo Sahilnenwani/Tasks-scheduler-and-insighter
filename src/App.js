@@ -1,7 +1,8 @@
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter,
+  Routes,
   Route,
+  Link,
 } from "react-router-dom";
 import SignUPpage from "./screens/SignUp/SignUppage"
 import { HomePage } from "./screens/HomeScreen/HomePage";
@@ -12,14 +13,18 @@ function App() {
   return (
  
     <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path="/" component={LoginPage} />
+      <BrowserRouter>
+      <Routes>
+          <Route path="/" element={<LoginPage/>} />
 
-          <Route exact path="/home" component={HomePage} />
-          <Route exact path="/signup" component={SignUPpage} />
-        </Switch>
-      </Router>
+          
+          <Route   path="/home" element={<HomePage/>} />
+          
+
+          <Route  path="/signup" element={<SignUPpage/>} />
+        </Routes>
+
+        </BrowserRouter>
 
     </div>
  
