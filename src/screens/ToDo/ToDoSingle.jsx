@@ -42,7 +42,7 @@ const ToDoSingle = ({ todo, setCheck }) => {
             {/* <Dropdown.ItemText>Dropdown item text</Dropdown.ItemText> */}
             <Dropdown.Item as="button" onClick={() => setCheck(true)}>Edit</Dropdown.Item>
             <Dropdown.Item as="button">InProgress</Dropdown.Item>
-            <Dropdown.Item as="button">Mark as done</Dropdown.Item>
+            <Dropdown.Item as="button" >Mark as done</Dropdown.Item>
             <Dropdown.Item as="button" onClick={()=> RemoveTodo(todo.id)}>Delete</Dropdown.Item>
           </DropdownButton>
         </div>

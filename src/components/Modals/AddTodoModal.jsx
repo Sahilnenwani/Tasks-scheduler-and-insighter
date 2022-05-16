@@ -27,9 +27,11 @@ export const AddTodoModal = ({setCheckAddButton}) => {
         console.log("task",task);
         let today = new Date().toLocaleDateString()
         const data={
-          id:todoList.length+1,
+          Done:false,
           todo:task,
-          time:today
+          time:today,
+
+
         }
         dispatch(TodoDataCreater(data));
         dispatch(TodoGetDataCreater());
