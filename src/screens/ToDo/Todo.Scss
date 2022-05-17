@@ -1,3 +1,6 @@
+.todos-input{
+    position: relative;
+}
 .todos-input::-webkit-scrollbar {
     width: 15px;
 }
@@ -128,6 +131,7 @@
 //    border: 0px;
 // }
 .plus-button{
+    position:relative;
     margin-top: 5px;
     width: 25px;
     height: 25px;

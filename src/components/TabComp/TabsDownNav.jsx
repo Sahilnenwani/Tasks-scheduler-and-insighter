@@ -7,43 +7,50 @@ import { clickedTabsActionCreater } from '../../Redux/Acrtions/ClickedTabsAction
 
 export const TabsDownNav = () => {
   const [key, setKey] = useState('Backlog');
-  const [totalDoneTodos,setTotalDoneTodos]=useState();
-  const [totalInProgressTodos,setTotalInProgressTodos]=useState();
+  const [totalDoneTodos,setTotalDoneTodos]=useState(0);
+  const [totalInProgressTodos,setTotalInProgressTodos]=useState(0);
   const todoList = useSelector(state => state.TodoReducer.todos);
   const dispatch=useDispatch();
-
+  console.log("cheking todo's list in Tabs Component",todoList);
  
 
   const checkDoneTodo=()=>{
-   
+    if(todoList?.length > 0 ){
    const TodosWithDoneTag= todoList?.filter((todo)=>{
      return todo.Done!=false;
     })
     setTotalDoneTodos(TodosWithDoneTag?.length);
   }
+  }
   const checkInprogressTodo=()=>{
+   if(todoList?.length > 0 ){
     const TodosWhichInprogress= todoList?.filter((todo)=>{
       return todo.inprogress==true;
      })
      setTotalInProgressTodos(TodosWhichInprogress?TodosWhichInprogress.length:0);
+    }
    }
  
+useEffect(()=>{
+  checkDoneTodo();
+  checkInprogressTodo();
+},[todoList])
 
   useEffect(() => {
     switch (key) {
         case "Backlog":
-            dispatch(clickedTabsActionCreater(0))            
+            dispatch(clickedTabsActionCreater(0));
             break;
         case "Progress":
-                dispatch(clickedTabsActionCreater(1))            
-                checkInprogressTodo();
+                dispatch(clickedTabsActionCreater(1));            
+               
                 break;
         case "Done":
-          dispatch(clickedTabsActionCreater(2))         
-          checkDoneTodo();          
+          dispatch(clickedTabsActionCreater(2));         
+                  
              break;
         default:
-          dispatch(clickedTabsActionCreater(0))            
+          dispatch(clickedTabsActionCreater(0));     
             break;
     }
             
@@ -59,7 +66,7 @@ export const TabsDownNav = () => {
         }}
       className="mb-3 tabs-overall-design"
     >
-      <Tab eventKey="Backlog" title="Backlog(6)">
+      <Tab eventKey="Backlog" title={`Backlog(${todoList?todoList.length:0})`}>
       </Tab>
       <Tab eventKey="Progress" title={`Progress(${totalInProgressTodos})`}>
       </Tab>

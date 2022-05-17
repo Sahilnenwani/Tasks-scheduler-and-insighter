@@ -8,22 +8,23 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 
-const Daydis = ({ dayData, daysTime, setCheck }) => {
+const Daydis = ({ dayData, daysTime }) => {
   const [FilteredCount, setFilteredCount] = useState({
 
   })
   const [openInner, setOpenInner] = useState(false);
-  const [FilterTodoList, setFilterTodoList] = useState([]);
+  const [FilterTodoList, setFilterTodoList] = useState();
   const todoList = useSelector(state => state.TodoReducer.todos);
   const whichTabClicked = useSelector(state => state.inprogressDoneReducer.tab)
 
+  console.log("filter data in days component checking the rendering",FilterTodoList,dayData);
   const dispatch = useDispatch();
   // console.log("Day dis todo data",todoList)
 
   // console.log("Day dis todo data",FilterTodoList)
 
   useEffect(() => {
-    if (todoList?.length > 0) {
+    if (todoList?.length > 0 ) {
       let filtertododata;
       if (whichTabClicked === 2) {
         const TodosWithDoneTag = todoList?.filter((todo) => {
@@ -37,25 +38,28 @@ const Daydis = ({ dayData, daysTime, setCheck }) => {
         const TodosWhichInProgress = todoList?.filter((todo) => {
           return todo.inprogress == true;
         })
+        console.log("Todos data when inprogress tab is clicked",TodosWhichInProgress);
         filtertododata = TodosWhichInProgress?.filter(todo => {
           return todo.time === daysTime[dayData];
         });
+        // console.log("Todos filter data when inprogress tab is clicked",dayData," ",filtertododata);
+        
       }
-      else {
+      else{
         filtertododata = todoList?.filter(todo => {
           return todo.time === daysTime[dayData];
         });
-        console.log("filtered data from day compoennt", filtertododata)
-        console.log("filtered data from day compoennt", FilterTodoList)
+        // console.log("filtered data from day compoennt", filtertododata)
+        // console.log("filtered data from day compoennt", FilterTodoList)
         // dispatch(FilteredTodoActionCreater(filtertododata));
         const filterlenghtdata = {
         }
-        console.log(".............//////////////", dayData);
+        // console.log(".............//////////////", dayData);
         filterlenghtdata[dayData] = filtertododata?.length;
         dispatch(FilteredTodoActionCreater(filterlenghtdata));
       }
+      console.log("Todos filter data when inprogress tab is clicked",dayData," ",filtertododata);
       setFilterTodoList(filtertododata);
-
     }
   }, [todoList, whichTabClicked])
 
@@ -72,8 +76,8 @@ const Daydis = ({ dayData, daysTime, setCheck }) => {
         </Button>
         <Collapse in={openInner} >
           <div className='card-data'>
-            {console.log("time divided", daysTime[dayData])}
-            <ToDosList setCheck={setCheck} FilterTodoList={FilterTodoList} />
+            {/* {console.log("time divided", daysTime[dayData])} */}
+            <ToDosList  FilterTodoList={FilterTodoList} />
           </div>
         </Collapse>
       </div>

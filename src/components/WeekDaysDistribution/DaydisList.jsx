@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import "./week-days.scss";
 import Daydis from './Daydis';
 
-const DaydisList = ({ daysData = [], daysTime, setCheck= () => {} }) => {
+const DaydisList = ({ daysData, daysTime, }) => {
 
 
   return (
@@ -13,7 +13,7 @@ const DaydisList = ({ daysData = [], daysTime, setCheck= () => {} }) => {
       {
         daysData?.map((dayData) => {
           console.log("day data from list", dayData)
-          return (<Daydis dayData={dayData} daysTime={daysTime} setCheck={setCheck} />)
+          return (<Daydis dayData={dayData} daysTime={daysTime}  />)
         })
       }
      

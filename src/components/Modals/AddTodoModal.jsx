@@ -1,8 +1,17 @@
 import React,{useState} from 'react';
 import { Modal,Button,Form } from 'react-bootstrap';
 import { useDispatch,useSelector } from "react-redux"; 
-import { TodoDataCreater } from '../../Redux/Acrtions/TodoDataAction';
+// import { TodoDataCreater } from '../../Redux/Acrtions/TodoDataAction';
 import { TodoGetDataCreater } from '../../Redux/Acrtions/GetTodoAction';
+import { db } from "../../fire";
+import {
+    getFirestore,
+     query,
+   collection,
+   where,
+    addDoc,
+} from "firebase/firestore";
+
 
 
 
@@ -13,12 +22,11 @@ export const AddTodoModal = ({setCheckAddButton}) => {
         setCheckAddButton(false);
         setShow(false);
     };
-
     const todoList = useSelector(state => state.TodoReducer.todos); 
       const dispatch =useDispatch();
       // console.log("add modal values of todoList",todoList);
 
-      const add=()=>{
+      const add=async ()=>{
         // console.log("add button")
         if (task==="") {
             alert("All the feilds are mandatory")
@@ -26,14 +34,13 @@ export const AddTodoModal = ({setCheckAddButton}) => {
         }
         console.log("task",task);
         let today = new Date().toLocaleDateString()
-        const data={
+        await addDoc(collection(db, "todos"), {
           Done:false,
-          todo:task,
+          inprogress:true,
           time:today,
-
-
-        }
-        dispatch(TodoDataCreater(data));
+          todo:task,
+        });
+        // dispatch(TodoDataCreater(data));
         dispatch(TodoGetDataCreater());
         SetTask(" ");
     }

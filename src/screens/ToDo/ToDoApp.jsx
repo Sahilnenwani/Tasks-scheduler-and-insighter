@@ -9,11 +9,11 @@ import { useDispatch } from 'react-redux';
 import { TodoGetDataCreater } from '../../Redux/Acrtions/GetTodoAction';
 
 const ToDoApp = () => {
-  const [check, setCheck] = useState(false);
+  // const [check, setCheck] = useState(false);
   const [checkAddButton, setCheckAddButton] = useState(false);
-  const setCheckHandler = (value) => {
-    setCheck(value)
-  }
+  // const setCheckHandler = (value) => {
+  //   setCheck(value)
+  // }
   const dispatch = useDispatch();
   useEffect(()=>{
     console.log("initail data getter is loaded")
@@ -29,12 +29,12 @@ const ToDoApp = () => {
         <div className='todos-style-data'>
         
           <div className='todos-input'>
-            <TodosWeek setCheck={setCheckHandler} />
+            <TodosWeek />
             <div className='plus-button' onClick={() => setCheckAddButton(true)}><button><AiOutlinePlus /></button>
             </div>
           </div>
         </div>
-        {check ? <EditTodoModal setCheck={setCheckHandler} /> : " "}
+        {/* {check ? <EditTodoModal setCheck={setCheckHandler} /> : " "} */}
         {checkAddButton ? <AddTodoModal setCheckAddButton={setCheckAddButton} /> : " "}
       </div>
 

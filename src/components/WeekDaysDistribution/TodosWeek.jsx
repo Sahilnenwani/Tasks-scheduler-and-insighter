@@ -8,7 +8,7 @@ import "./week-days.scss";
 import DaydisList from '../WeekDaysDistribution/DaydisList';
 
 
-const TodosWeek = ({ setCheck }) => {
+const TodosWeek = () => {
   const [daysData, setDaysData] = useState([]);
   const [daysTime, setDaysTime] = useState({});
   const [open, setOpen] = useState(true);
@@ -86,11 +86,11 @@ const TodosWeek = ({ setCheck }) => {
         aria-controls="example-collapse-text"
         aria-expanded={open}
       >
-        <IoMdArrowDropdown /> Week({todoList?.length})
+        <IoMdArrowDropdown /> Week({ todoList?.length})
       </Button>
       <Collapse in={open}>
         <div className="day-dis">
-          <DaydisList daysData={daysData} daysTime={daysTime} setCheck={setCheck} />
+          <DaydisList daysData={daysData} daysTime={daysTime} />
         </div>
       </Collapse>
 
