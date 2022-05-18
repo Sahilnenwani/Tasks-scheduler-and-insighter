@@ -23,7 +23,8 @@ export const TodoDataCreater=(data)=>{
         console.log("working Todo add data  Reducer");
         await addDoc(collection(db, "todos"), {
             Done:false,
-            inprogress:true,
+            backlog:true,
+            inprogress:false,
             time:data.time,
             todo:data.todo,
           });

@@ -8,58 +8,71 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 
-const Daydis = ({ dayData, daysTime }) => {
-  const [FilteredCount, setFilteredCount] = useState({
-
-  })
+const Daydis = ({ dayData }) => {
+ 
   const [openInner, setOpenInner] = useState(false);
-  const [FilterTodoList, setFilterTodoList] = useState();
+  const [filterTodoList, setFilterTodoList] = useState();
   const todoList = useSelector(state => state.TodoReducer.todos);
   const whichTabClicked = useSelector(state => state.inprogressDoneReducer.tab)
 
-  console.log("filter data in days component checking the rendering",FilterTodoList,dayData);
+  console.log("filter data in days component checking the rendering",filterTodoList,dayData);
   const dispatch = useDispatch();
   // console.log("Day dis todo data",todoList)
 
   // console.log("Day dis todo data",FilterTodoList)
 
+
+  //Graph dependency
+  useEffect(()=>{
+   const filtertododata = todoList?.filter(todo => {
+      return todo.day === dayData;
+    });
+
+    const filterlenghtdata = {
+    }
+    
+    filterlenghtdata[dayData] = filtertododata?.length;
+    dispatch(FilteredTodoActionCreater(filterlenghtdata));
+
+
+        // console.log("filtered data from day compoennt", filtertododata)
+    // console.log("filtered data from day compoennt", FilterTodoList)
+    // dispatch(FilteredTodoActionCreater(filtertododata));
+    // console.log("Todos filter data default tab is clicked",dayData," ",filtertododata);
+    // console.log(".............//////////////", dayData);
+  },[todoList])
+
   useEffect(() => {
     if (todoList?.length > 0 ) {
-      let filtertododata;
-      if (whichTabClicked === 2) {
+      if (whichTabClicked===2) {
         const TodosWithDoneTag = todoList?.filter((todo) => {
-          return todo.Done != false;
+          return todo.Done === true;
         })
-        filtertododata = TodosWithDoneTag?.filter(todo => {
-          return todo.time === daysTime[dayData];
+        const filtertododata = TodosWithDoneTag?.filter(todo => {
+          return todo.day === dayData;
         });
+        return   setFilterTodoList(filtertododata);
       }
       else if(whichTabClicked===1){
         const TodosWhichInProgress = todoList?.filter((todo) => {
-          return todo.inprogress == true;
+          return todo.inprogress === true;
         })
-        console.log("Todos data when inprogress tab is clicked",TodosWhichInProgress);
-        filtertododata = TodosWhichInProgress?.filter(todo => {
-          return todo.time === daysTime[dayData];
+        const filtertododata = TodosWhichInProgress?.filter(todo => {
+          return todo.day === dayData;
         });
-        // console.log("Todos filter data when inprogress tab is clicked",dayData," ",filtertododata);
-        
+        return   setFilterTodoList(filtertododata); 
       }
       else{
-        filtertododata = todoList?.filter(todo => {
-          return todo.time === daysTime[dayData];
+        const TodoInBackLog = todoList?.filter((todo) => {
+          return todo.backlog === true;
+        })
+      const filtertododata = TodoInBackLog?.filter(todo => {
+          return todo.day === dayData;
         });
-        // console.log("filtered data from day compoennt", filtertododata)
-        // console.log("filtered data from day compoennt", FilterTodoList)
-        // dispatch(FilteredTodoActionCreater(filtertododata));
-        const filterlenghtdata = {
-        }
-        // console.log(".............//////////////", dayData);
-        filterlenghtdata[dayData] = filtertododata?.length;
-        dispatch(FilteredTodoActionCreater(filterlenghtdata));
+     return   setFilterTodoList(filtertododata);
       }
-      console.log("Todos filter data when inprogress tab is clicked",dayData," ",filtertododata);
-      setFilterTodoList(filtertododata);
+     
+      
     }
   }, [todoList, whichTabClicked])
 
@@ -72,12 +85,12 @@ const Daydis = ({ dayData, daysTime }) => {
           aria-controls="example-collapse-text"
           aria-expanded={openInner}
         >
-          <IoMdArrowDropdown /> {dayData}({FilterTodoList?.length})
+          <IoMdArrowDropdown /> {dayData}({filterTodoList?.length})
         </Button>
         <Collapse in={openInner} >
           <div className='card-data'>
             {/* {console.log("time divided", daysTime[dayData])} */}
-            <ToDosList  FilterTodoList={FilterTodoList} />
+            <ToDosList  FilterTodoList={filterTodoList} />
           </div>
         </Collapse>
       </div>

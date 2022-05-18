@@ -27,18 +27,26 @@ export const AddTodoModal = ({setCheckAddButton}) => {
       // console.log("add modal values of todoList",todoList);
 
       const add=async ()=>{
+       
         // console.log("add button")
         if (task==="") {
             alert("All the feilds are mandatory")
             return;
         }
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         console.log("task",task);
         let today = new Date().toLocaleDateString()
+        var d = new Date(today);
+        let dayName = days[d.getDay()];
+        console.log("day from add componet",dayName);
+
         await addDoc(collection(db, "todos"), {
           Done:false,
-          inprogress:true,
+          backlog:true,
+          inprogress:false,
           time:today,
           todo:task,
+          day:dayName
         });
         // dispatch(TodoDataCreater(data));
         dispatch(TodoGetDataCreater());
@@ -61,6 +69,7 @@ export const AddTodoModal = ({setCheckAddButton}) => {
                 autoFocus
                 onChange={(e)=>SetTask(e.target.value)}
                 maxlength="20"
+                required
               />
             </Form.Group>
           </Form>

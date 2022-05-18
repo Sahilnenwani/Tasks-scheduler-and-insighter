@@ -19,10 +19,10 @@ export const HomePage = () => {
           <SideBar></SideBar>
         </Col>
         <Col lg={11}  >
-           <Row className="Nav-items">
+          <div className="Nav-items">
               <NavBar></NavBar>
               <TabsDownNav />
-            </Row>
+            </div>
             <Row className='todos-style' > 
               <Col lg={6} > 
               <div className="ToDocode">

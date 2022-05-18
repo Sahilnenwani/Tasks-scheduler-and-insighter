@@ -19,9 +19,11 @@ export const EditTodoModal = ({setCheck,EidtTodo}) => {
 
       await setDoc(doc(db, "todos", EidtTodo.id), {
         Done:false,
-        inprogress:true,
+        backlog:EidtTodo.backlog,
+        inprogress:EidtTodo.inprogress,
         time:EidtTodo.time,
         todo:task,
+        day:EidtTodo.day
       });
       dispatch(TodoGetDataCreater());
     }

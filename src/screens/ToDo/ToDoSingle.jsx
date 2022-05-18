@@ -9,6 +9,7 @@ import { TodoGetDataCreater } from '../../Redux/Acrtions/GetTodoAction';
 import { EditTodoModal } from '../../components/Modals/EditTodoModal';
 
 import "./Todo.scss";
+import { async } from '@firebase/util';
 
 
 // import { useDispatch } from 'react-redux';
@@ -20,9 +21,25 @@ import "./Todo.scss";
 const ToDoSingle = ({ todo}) => {
   // const [check,setCheck]=useState(false);
   const [check, setCheck] = useState(false);
+  const [time, setTime] = useState(0);
+  const [timerOn, setTimerOn] = useState(false);
   const todoList = useSelector(state => state.TodoReducer.todos);
   const dispatch = useDispatch();
   
+  useEffect(()=>{
+    let interval=null;
+    if (timerOn) {
+     interval= setInterval(()=>{
+      setTime((prevTime)=>prevTime+10);
+     },1000)
+    }
+    else if(!timerOn){
+      clearInterval(interval);
+    }
+
+    return ()=> clearInterval(interval)
+  },[timerOn])
+
 
   const setCheckHandler = (value) => {
     setCheck(value)
@@ -33,13 +50,26 @@ const ToDoSingle = ({ todo}) => {
 
     await setDoc(doc(db, "todos", todo.id), {
       Done:true,
+      backlog:false,
       inprogress:false,
       time:todo.time,
       todo:todo.todo,
+      day:todo.day
     });
     dispatch(TodoGetDataCreater());
   }
+  const setMakeBacklog=async()=>{
 
+    await setDoc(doc(db, "todos", todo.id), {
+      Done:false,
+      backlog:true,
+      inprogress:false,
+      time:todo.time,
+      todo:todo.todo,
+      day:todo.day
+    });
+    dispatch(TodoGetDataCreater());
+  }
 
 
 
@@ -47,10 +77,12 @@ const ToDoSingle = ({ todo}) => {
     console.log("id of doc for update the Inprogress",todo.id);
 
     await setDoc(doc(db, "todos", todo.id), {
-      Done:todo.Done,
-      inprogress:false,
+      Done:false,
+      backlog:false,
+      inprogress:true,
       time:todo.time,
       todo:todo.todo,
+      day:todo.day
     });
     dispatch(TodoGetDataCreater());
     // const todoRef= setDoc(doc(db,"todos",id));
@@ -73,20 +105,30 @@ const ToDoSingle = ({ todo}) => {
   return (
     <div key={todo.id} >
       
-      
-      <Card body style={{width:"300px", height:"70px", marginBottom:"8px"}}>
+      <Card className='card-of-todo-single' body style={{width:"300px", height:"70px", marginBottom:"8px"}}>
         <div className='card-data-todo'>
         <div className='task-time-style'>
           <div>{todo.todo}</div>
           <div>{todo.time}</div>
         </div>
         <div className='points-icon-style'>
+          <div>
+          <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
+        <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+        <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
+          </div>
+          
           <DropdownButton id="dropdown-item-button" >
-            <Dropdown.Item as="button" onClick={() => setCheck(true)}>Edit</Dropdown.Item>
-            {todo.inprogress==false?"":<Dropdown.Item as="button" onClick={()=> setMakeInporgress(todo)}>{todo.inprogress==false?"Completed":"Inprogress"}</Dropdown.Item>}
+            {todo.Done==true?"":<Dropdown.Item as="button" onClick={() => setCheck(true)}>Edit</Dropdown.Item>}
+             {todo.Done==true?"":todo.backlog===true?<Dropdown.Item as="button" onClick={()=> setMakeInporgress(todo)}>
+              {/* {todo.inprogress==false?"Completed":"Inprogress"} */}
+              Inprogress
+            </Dropdown.Item>:<Dropdown.Item as="button" onClick={()=> setMakeBacklog(todo)}>
+              drop in backlog
+            </Dropdown.Item>}
             
-            {todo.Done==true?"":
-            <Dropdown.Item as="button" onClick={()=> setTodoAsDone(todo)} >{todo.Done==true?"Marked Done":"Mark as done"}  </Dropdown.Item>
+            {todo.backlog==true?"":todo.Done==true?"":
+            <Dropdown.Item as="button" onClick={()=> setTodoAsDone(todo)} >Mark as done</Dropdown.Item>
             }
             <Dropdown.Item as="button" onClick={()=> RemoveTodo(todo.id)}>Delete</Dropdown.Item>
           </DropdownButton>
