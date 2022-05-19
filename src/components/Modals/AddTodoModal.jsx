@@ -46,7 +46,8 @@ export const AddTodoModal = ({setCheckAddButton}) => {
           inprogress:false,
           time:today,
           todo:task,
-          day:dayName
+          day:dayName,
+          timeTaken:0,
         });
         // dispatch(TodoDataCreater(data));
         dispatch(TodoGetDataCreater());

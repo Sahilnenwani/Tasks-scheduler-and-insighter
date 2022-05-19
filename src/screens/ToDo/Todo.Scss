@@ -172,3 +172,19 @@
 .card-of-todo-single{
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+
+.points-icon-style{
+    display: flex;
+    flex-direction: row;
+    
+}
+.Timer-on-card{
+    display: flex;
+    flex-direction: row;
+}
+.start-pause-icon .pause-icon svg path{
+    fill: red;
+}
+.start-pause-icon .start-icon svg path{
+    fill: green;
+}

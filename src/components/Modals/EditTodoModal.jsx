@@ -23,7 +23,8 @@ export const EditTodoModal = ({setCheck,EidtTodo}) => {
         inprogress:EidtTodo.inprogress,
         time:EidtTodo.time,
         todo:task,
-        day:EidtTodo.day
+        day:EidtTodo.day,
+        timeTaken:0,
       });
       dispatch(TodoGetDataCreater());
     }
