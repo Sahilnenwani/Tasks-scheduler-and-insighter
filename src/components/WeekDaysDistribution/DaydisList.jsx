@@ -12,7 +12,6 @@ const DaydisList = ({ daysData, daysTime, }) => {
 
       {
         daysData?.map((dayData) => {
-          console.log("day data from list", dayData)
           return (<Daydis dayData={dayData}  />)
         })
       }

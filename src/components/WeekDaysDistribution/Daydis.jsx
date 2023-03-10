@@ -65,7 +65,7 @@ const Daydis = ({ dayData }) => {
    
       if (whichTabClicked === 2) {
         const TodosWithDoneTag = todoList?.filter((todo) => {
-          return todo.Done === true;
+          return  todo.Done === true && todo.inprogress ===false;
         })
         const filtertododata = TodosWithDoneTag?.filter(todo => {
           return todo.day === dayData;
@@ -75,7 +75,7 @@ const Daydis = ({ dayData }) => {
       }
       else if (whichTabClicked === 1) {
         const TodosWhichInProgress = todoList?.filter((todo) => {
-          return todo.inprogress === true;
+          return todo.inprogress == true && todo.backlog===false;
         })
         const filtertododata = TodosWhichInProgress?.filter(todo => {
           return todo.day === dayData;
@@ -116,7 +116,7 @@ const Daydis = ({ dayData }) => {
       {filterTodoList?.length===0?" ":
       < div>
      
-        <Button
+        <Button className='button-style-of-day-week'
           onClick={() => setOpenInner(!openInner)}
           aria-controls="example-collapse-text"
           aria-expanded={openInner}

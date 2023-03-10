@@ -9,6 +9,7 @@ import { registerWithEmailAndPassword, auth } from '../../fire';
 import SimpleLoader from '../../components/Loader/simpleLoader';
 import { useForm } from 'react-hook-form';
 import LogSignButton from '../../components/Buttons/LogSignButton';
+import { async } from '@firebase/util';
 
 
 
@@ -32,11 +33,26 @@ const SignUppage = () => {
   const history = useNavigate();
 
 
-  const registeruser = (data) => {
+  const registeruser =async (data) => {
     if (!data.FullName) {
       alert("please enter name")
     }
-    registerWithEmailAndPassword(data.FullName, data.email, data.password);
+    const responce=await fetch("http://localhost:5000/auth/register",{
+      method:'POST',
+      headers:{
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({username:data.FullName,email:data.email,password:data.password})
+    })
+
+    const json=await responce.json();
+    if (json.status == 200) {
+      history("/");
+    }
+
+
+
+    // registerWithEmailAndPassword(data.FullName, data.email, data.password);
   }
 
   useEffect(() => {

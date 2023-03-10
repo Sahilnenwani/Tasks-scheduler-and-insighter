@@ -11,7 +11,6 @@ const FilteredDataReducer = (state = initialState, action) => {
         case "Get Filtered TODO":
             return (
                 {
-                    
                     filterdtodos: {...state.filterdtodos, ...action.payload}
                 })
 

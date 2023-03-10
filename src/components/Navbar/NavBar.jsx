@@ -16,13 +16,13 @@ export const NavBar = () => {
   const dispatch=useDispatch();
   console.log("Navbar",WDATA);
   useEffect(() => {
-    dispatch(fetchDataCreater());
+    dispatch(fetchDataCreater()); 
     }, [dispatch])
   const history = useNavigate();
 
-  useEffect(() => {
-    if (!user) history("/")
-  }, [user])
+  // useEffect(() => {
+  //   if (!user) history("/")
+  // }, [user])
 
   const logOutUser = () => {
     logout();

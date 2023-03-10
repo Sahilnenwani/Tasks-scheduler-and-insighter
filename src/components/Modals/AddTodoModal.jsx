@@ -34,11 +34,9 @@ export const AddTodoModal = ({setCheckAddButton}) => {
             return;
         }
         var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        console.log("task",task);
         let today = new Date().toLocaleDateString()
         var d = new Date(today);
         let dayName = days[d.getDay()];
-        console.log("day from add componet",dayName);
 
         await addDoc(collection(db, "todos"), {
           Done:false,

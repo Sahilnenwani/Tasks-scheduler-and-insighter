@@ -178,7 +178,7 @@ const ToDoSingle = ({ todo,checkTimer,setCheckTimer }) => {
 
 
 
-            <DropdownButton id="dropdown-item-button" style={{marginTop:"-2px"}}>
+            <DropdownButton id="dropdown-item-button" style={{marginTop:"-2px",boxShadow:"none !important"}} className='button-style-of-dropdown-todos'>
               {todo.Done == true ? "" : <Dropdown.Item as="button" onClick={() => setCheck(true)}>Edit</Dropdown.Item>}
               {todo.backlog === true || todo.Done == true ? <Dropdown.Item as="button" onClick={() => setMakeInporgress(todo)}>
                 {/* {todo.inprogress==false?"Completed":"Inprogress"} */}

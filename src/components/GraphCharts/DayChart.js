@@ -7,7 +7,7 @@ export const DayChart = () => {
   // const [daysTime, setDaysTime] = useState({}); 
   const filterlength = useSelector(state => state.FilteredDataReducer.filterdtodos);
   
-  console.log("Filtered length in chart component ///",filterlength)
+  
 
 
   let option = {

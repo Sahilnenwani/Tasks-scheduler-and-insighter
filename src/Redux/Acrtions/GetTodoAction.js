@@ -2,7 +2,7 @@ import { db } from "../../fire";
 // import {
 //    collection,
 // } from "firebase/firestore";
-import { collection, Firestore, getDocs } from "firebase/firestore";
+import { collection, Firestore, getDocs } from "firebase/firestore"; 
 
 
 export const TodoGetDataAction=(data)=>{

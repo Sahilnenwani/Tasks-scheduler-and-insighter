@@ -4,7 +4,7 @@ import LinkedinSVG from '../../components/SVGs/LinkedinSVG';
 import FacebookSVG from '../../components/SVGs/FacebookSVG';
 import GoogleSVG from '../../components/SVGs/GoogleSVG';
 import { Link, useNavigate } from 'react-router-dom';
-import { logInWithEmailAndPassword, auth } from '../../fire';
+// import { logInWithEmailAndPassword, auth } from '../../fire';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from 'react-hook-form';
 import LogSignButton from '../../components/Buttons/LogSignButton';
@@ -16,26 +16,46 @@ function LoginPage() {
   // const [email,setEmail]=useState();
   // const [password, setPassword] = useState();
   const [checkLoading, setCheckLoading] = useState(false)
-  const [user=null, loading, error] = useAuthState(auth);
+  // const [user=null, loading, error] = useAuthState(auth);
   const { register, handleSubmit, formState: { errors } } = useForm({
     criteriaMode: "all"
   });
 
   const history = useNavigate();
   const onSubmit = data => {
-    loginUser(data)
+    logedInuser(data)
   }
 
   // console.log(auth);
-  const loginUser = async (data) => {
+  // const loginUser = async (data) => {
+  //   setCheckLoading(true);
+  //   // await logInWithEmailAndPassword(data.email, data.password);
+  //  await logedInuser(data);
+  //   setCheckLoading(false);
+  // }
+
+  const logedInuser= async(data)=>{
+     console.log("I am getting the request",data)
     setCheckLoading(true);
-    await logInWithEmailAndPassword(data.email, data.password);
+    const responce=await fetch("http://localhost:5000/auth/login",{
+      method: 'POST', 
+      headers:{
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({username:data.FullName,password:data.password})
+    })
     setCheckLoading(false);
+    const json=await responce.json();
+    console.log(json);
+    if (json.status === "200") {
+      localStorage.setItem('token',json.token)
+      history("/home");
+    }
   }
 
-  useEffect(() => {
-    if (user) history("/home");
-  }, [user])
+  // useEffect(() => {
+  //   if (user) history("/home");
+  // }, [user])
 
 
   return (
@@ -66,11 +86,11 @@ function LoginPage() {
                 <div className='login-text'>Login</div>
                 <div className='center'>
                   <Form className='form-layout' onSubmit={handleSubmit(onSubmit)}>
-                    <Form.Group className="mb-3 form-input-field" controlId="formBasicEmail">
+                  <Form.Group className="mb-3 form-input-field" controlId="formBasicTex">
+                    <Form.Control type="text" placeholder="Full Name"  {...register("FullName", { required: "Full Name is required", minLength: {value:5, message:"Full name minimum length is 5" } })} />
+                    <span className={errors.FullName?'error-messages':" "}>{errors.FullName?.message}</span>
+                  </Form.Group>
 
-                      <Form.Control type="email" placeholder="Enter email"   {...register("email", { required: "Email is required", minLength: { value: 8, message: "email minimum length is 8" }, maxLength: 20 })} />
-                      <span className={errors.email ? "error-messages" : " "}>{errors.email?.message}</span>
-                    </Form.Group>
 
                     <Form.Group className="mb-3 form-input-field" controlId="formBasicPassword">
                       {/* <PasswordSVG/> */}
