@@ -1,0 +1,16 @@
+   let filtertododataForGrap = todoList?.filter(todo => {
+          return todo.time === daysTime[dayData];
+        });
+
+
+//week
+ const TodosInBacklog = todoList?.filter((todo) => {
+          return todo.backlog == true;
+        })
+        for (let i = 0; i < TodosInBacklog?.length; i++) {
+          var d = new Date(TodosInBacklog[i].time);
+          let dayName = days[d.getDay()];
+          console.log("week data", dayName)
+          daysTimedata[dayName] = TodosInBacklog[i].time;
+          daysHave.add(dayName)
+        }
